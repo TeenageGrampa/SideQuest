@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character: 
+  strmod: 1
+  dexmod: 1
+  conmod: 1
+  intmod: 1
+  wismod: 1
+  chrmod: 1
+
+two:
+  character: 
+  strmod: 1
+  dexmod: 1
+  conmod: 1
+  intmod: 1
+  wismod: 1
+  chrmod: 1

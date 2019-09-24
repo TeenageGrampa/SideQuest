@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character: 
+  name: MyString
+  desc: MyString
+  hit_dice: MyString
+  armor_prof: MyString
+  prof_weapons: MyString
+  prof_tools: MyString
+  prof_saving_throws: MyString
+  prof_skills: MyString
+  equipment: MyString
+  apellcast_ability: MyString
+
+two:
+  character: 
+  name: MyString
+  desc: MyString
+  hit_dice: MyString
+  armor_prof: MyString
+  prof_weapons: MyString
+  prof_tools: MyString
+  prof_saving_throws: MyString
+  prof_skills: MyString
+  equipment: MyString
+  apellcast_ability: MyString

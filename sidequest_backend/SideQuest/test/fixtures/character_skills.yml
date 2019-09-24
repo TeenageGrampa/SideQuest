@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character: 
+  acrobatics: 1
+  animal_handling: 1
+  arcana: 1
+  athletics: 1
+  deception: 1
+  history: 1
+  insight: 1
+  intimidation: 1
+  investigation: 1
+  medicine: 1
+  nature: 1
+  perception: 1
+  peformance: 1
+  persuasion: 1
+  religion: 1
+  sleight_of_hand: 1
+  stealth: 1
+
+two:
+  character: 
+  acrobatics: 1
+  animal_handling: 1
+  arcana: 1
+  athletics: 1
+  deception: 1
+  history: 1
+  insight: 1
+  intimidation: 1
+  investigation: 1
+  medicine: 1
+  nature: 1
+  perception: 1
+  peformance: 1
+  persuasion: 1
+  religion: 1
+  sleight_of_hand: 1
+  stealth: 1
