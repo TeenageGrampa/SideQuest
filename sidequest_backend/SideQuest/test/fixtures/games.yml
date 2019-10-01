@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  explevel: MyString
+  rplevel: 1
+  dungeon_master: one
+
+two:
+  name: MyString
+  explevel: MyString
+  rplevel: 1
+  dungeon_master: two

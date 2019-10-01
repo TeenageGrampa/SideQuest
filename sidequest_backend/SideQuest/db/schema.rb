@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_23_174153) do
+ActiveRecord::Schema.define(version: 2019_09_30_155459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2019_09_23_174153) do
     t.string "name"
     t.string "desc"
     t.string "age"
-    t.string "aignment"
+    t.string "alignment"
     t.string "size"
     t.integer "speed"
     t.string "speed_desc"
@@ -113,6 +113,57 @@ ActiveRecord::Schema.define(version: 2019_09_23_174153) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "dungeon_masters", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_dungeon_masters_on_game_id"
+    t.index ["user_id"], name: "index_dungeon_masters_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "explevel"
+    t.string "rplevel"
+    t.string "location"
+    t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_messages_on_game_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "party_members", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_party_members_on_character_id"
+    t.index ["game_id"], name: "index_party_members_on_game_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "dungeon_master_id"
+    t.string "message"
+    t.bigint "character_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_requests_on_character_id"
+    t.index ["dungeon_master_id"], name: "index_requests_on_dungeon_master_id"
+    t.index ["game_id"], name: "index_requests_on_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -120,4 +171,13 @@ ActiveRecord::Schema.define(version: 2019_09_23_174153) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dungeon_masters", "games"
+  add_foreign_key "dungeon_masters", "users"
+  add_foreign_key "messages", "games"
+  add_foreign_key "messages", "users"
+  add_foreign_key "party_members", "characters"
+  add_foreign_key "party_members", "games"
+  add_foreign_key "requests", "characters"
+  add_foreign_key "requests", "dungeon_masters"
+  add_foreign_key "requests", "games"
 end

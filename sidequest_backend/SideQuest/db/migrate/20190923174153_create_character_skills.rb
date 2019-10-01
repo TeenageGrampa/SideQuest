@@ -19,6 +19,7 @@ class CreateCharacterSkills < ActiveRecord::Migration[5.2]
       t.integer :religion
       t.integer :sleight_of_hand
       t.integer :stealth
+      t.integer :survival
 
       t.timestamps
     end

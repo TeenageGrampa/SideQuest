@@ -158,95 +158,12 @@ class NewCharacter extends React.Component{
         
     }
 
-    nameChange = (e) =>{
-        this.setState({
-            characterName: e.target.value
-        })
-    }
-
-    alignmentChoice = (e) => {
-        this.setState({
-            characterAlignment: e.target.value
-        })
-    }
 
     handleSubmit =(e) =>  {
         e.preventDefault()
         console.log();
         const hitDieNum = this.props.newCharClass.hit_dice.split('d')[1]
         const maxHP = parseInt(hitDieNum) + this.props.mods.conMod
-        
-        fetch('http://localhost:3000/characters', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.state.characterName,
-                level: 1,
-                alignment: this.state.characterAlignment,
-                user_id: this.props.currentUser.id
-            })
-        }).then(r => r.json()).then(character => this.setState({
-            character_id: character.id
-        },() => {fetch('http://localhost:3000/character_classes', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    character_id: this.state.character_id,
-                    name: this.props.newCharClass.name,
-                    desc: this.props.newCharClass.desc,
-                    hit_dice: this.props.newCharClass.hit_dice, 
-                    armor_prof: this.props.newCharClass.armor_prof,
-                    prof_weapons: this.props.newCharClass.prof_weapons,
-                    prof_tools: this.props.newCharClass.prof_tools,
-                    prof_saving_throws: this.props.newCharClass.prof_saving_throws,
-                    prof_skills: this.props.newCharClass.prof_skills,
-                    equipment: this.props.newCharClass.equipment,
-                    spellcast_ability: this.props.newCharClass.spellcasting_ability
-                })
-            }).then(r => r.json()).then(console.log)
-                
-                fetch('http://localhost:3000/character_races', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    character_id: this.state.character_id,
-                    name: this.props.newCharRace.name,
-                    desc: this.props.newCharRace.desc,
-                    age: this.props.newCharRace.age,
-                    alignment: this.props.newCharRace.alignment,
-                    size: this.props.newCharRace.size,
-                    speed: this.props.newCharRace.speed.walk,
-                    speed_desc: this.props.newCharRace.speed_desc,
-                    languages: this.props.newCharRace.languages,
-                    vision: this.props.newCharRace.vision,
-                    traits: this.props.newCharRace.traits
-                })
-            }).then(r => r.json()).then(console.log)
-                fetch('http://localhost:3000/character_mods', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    character_id: this.state.character_id,
-                    strmod: this.props.mods.strMod,
-                    dexmod: this.props.mods.dexMod,
-                    conmod: this.props.mods.conMod,
-                    intmod: this.props.mods.intMod,
-                    wismod: this.props.mods.wisMod,
-                    chrmod: this.props.mods.chrMod
-                })
-            }).then(r => r.json()).then(console.log)
                 fetch('http://localhost:3000/character_skills', {
                 method: 'POST',
                 headers: {
@@ -254,7 +171,7 @@ class NewCharacter extends React.Component{
                 'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    character_id: this.state.character_id,
+                    character_id: this.props.character_id,
                     acrobatics: this.props.skills.Acrobatics,
                     animal_handling: this.props.skills.AnimalHandling,
                     arcana: this.props.skills.Arcana,
@@ -281,7 +198,7 @@ class NewCharacter extends React.Component{
                 'Accept': 'application/json'
                 },
                 body: JSON.stringify({
-                    character_id: this.state.character_id,
+                    character_id: this.props.character_id,
                     strength: this.props.stats.strength,
                     dexterity: this.props.stats.dexterity,
                     constitution: this.props.stats.constitution,
@@ -294,41 +211,116 @@ class NewCharacter extends React.Component{
                     passive_perception: 10 + this.props.skills.Perception,
                     proficiency_mod: 2
                 })
-            }).then(r => r.json()).then(console.log)}))
+            }).then(r => r.json()).then(this.handleCreate)
+        }
             
+    
+
+    handleCreate = () => {
+        this.props.history.push('./profile')
     }
+
+    handleLogout = () => {
+        localStorage.clear()
+        this.props.history.push('/')
+    }
+
+    getClassImg = (charClass) => {
+        if(charClass === 'Rogue'){
+            return require('./hooded-assassin.png')
+        } else if(charClass === 'Barbarian'){
+            return require('./barbarian.png')
+        } else if(charClass === 'Paladin'){
+            return require('./elf-helmet.png')
+        } else if(charClass === 'Warlock'){
+            return require('./warlock-hood.png')
+        } else if(charClass === 'Ranger'){
+            return require('./cowled.png')
+        } else if(charClass === 'Bard'){
+            return require('./musical-notes.png')
+        } else if(charClass === 'Cleric'){
+            return require('./pope-crown.png')
+        } else if(charClass === 'Druid'){
+            return require('./wolf-head.png')
+        } else if(charClass === 'Fighter'){
+            return require('./swordman.png')
+        } else if(charClass === 'Monk'){
+            return require('./monk-face.png')
+        } else if(charClass === 'Sorcerer'){
+            return require('./robe.png')
+        } else if(charClass === 'Wizard'){
+            return require('./wizard-staff.png')
+        }
+    }
+
+    getRaceImg = (charRace) => {
+        if(charRace === 'Dwarf'){
+            return require('./dwarf-king.png')
+        } else if(charRace === 'Elf'){
+            return require('./woman-elf-face.png')
+        } else if(charRace === 'Halfling'){
+            return require('./hobbit-dwelling.png')
+        } else if(charRace === 'Human'){
+            return require('./sensuousness.png')
+        } else if(charRace === 'Dragonborn'){
+            return require('./spiked-dragon-head.png')
+        } else if(charRace === 'Gnome'){
+            return require('./bad-gnome.png')
+        } else if(charRace === 'Half-Elf'){
+            return require('./elf-ear.png')
+        } else if(charRace === 'Half-Orc'){
+            return require('./orc-head.png')
+        } else if(charRace === 'Tiefling'){
+            return require('./horned-reptile.png')
+        } 
+    }
+
+    
     
     render(){
-        console.log(this.state)
+        const clasImg = this.getClassImg(this.props.newCharClass.name)
+        const raceImg = this.getRaceImg(this.props.newCharRace.name)
         const hitDieNum = this.props.newCharClass.hit_dice.split('d')[1]
         const maxHP = parseInt(hitDieNum) + this.props.mods.conMod
         const armorChoices = this.props.newCharClass.prof_armor.split(', ')
         const armorBtns = armorChoices.map(choice => choice === 'All armor' ? <div><button onClick={this.handleArmor} value="light armor">Light armor</button><button onClick={this.handleArmor} value="medium armor">Medium armor</button><button onClick={this.handleArmor} value="heavy armor">Heavy armor</button></div> : <button value={choice} onClick={this.handleArmor}>{choice}</button>)
         return(
-            <div className="columns">
-                <div className="column">
-                <h1>Roll Your Stats:</h1>
-                <h2>Chosen Race: {this.props.newCharRace.name}</h2>
-                <h2>Chosen Class: {this.props.newCharClass.name}</h2>
+            <div className="container">
+                <section className="hero" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10, backgroundImage: `url(http://fanaru.com/fantasy-art/image/232259-fantasy-art-a-burning-rose.gif)`, backgroundSize: 'cover'}}>
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title" style={{color: 'white'}}>
+                                Pick Proficiencies & Armor class:
+                            </h1>
+                            <p className="subtitle" style={{color: 'white'}}>
+                                You have {this.state.proficiencyPoints} given by your class. Confirm how to use them and pick your armor class before you confirm.
+                            </p>
+                            <button onClick={this.handleLogout} className="button is-black" style={{marginLeft: 100}}>Logout</button>
+                        </div>
+                    </div>
+                </section>
+            <div className="columns" style={{paddingTop: 50}}>
+                <div className="column content" >
+                
                 <ul>
                 <h2>Stats:</h2>
-                <li>Strength - {this.props.stats.strength}</li>
-                <li className="box" style={{width: 60}}>{this.state.strMod}</li>
-                <li>Dexterity - {this.props.stats.dexterity}</li>
-                <li className="box" style={{width: 60}}>{this.state.dexMod}</li>
-                <li>Constitution - {this.props.stats.constitution}</li>
-                <li className="box" style={{width: 60}}>{this.state.conMod}</li>
-                <li>Intelligence - {this.props.stats.intelligence}</li>
-                <li className="box" style={{width: 60}}>{this.state.intMod}</li>
-                <li>Wisdom - {this.props.stats.wisdom}</li>
-                <li className="box" style={{width: 60}}>{this.state.wisMod}</li>
-                <li>Charisma - {this.props.stats.charisma}</li>
-                <li className="box" style={{width: 60}}>{this.state.chrMod}</li>
+                <p>Strength - {this.props.stats.strength}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.strMod}</p><br></br>
+                <p>Dexterity - {this.props.stats.dexterity}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.dexMod}</p><br></br>
+                <p>Constitution - {this.props.stats.constitution}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.conMod}</p><br></br>
+                <p>Intelligence - {this.props.stats.intelligence}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.intMod}</p><br></br>
+                <p>Wisdom - {this.props.stats.wisdom}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.wisMod}</p><br></br>
+                <p>Charisma - {this.props.stats.charisma}</p><br></br>
+                <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.chrMod}</p><br></br>
                 </ul> </div>
                 <div className="column">
                 <p>Proficiency Modifier:</p>
-                <li className="box" style={{width: 180}}>+ 2</li>
-                <ul className="box" style={{width: 180}}>
+                <li className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>+ 2</li>
+                <ul className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Saving Throws:</p>
                     <li>Strength: {this.state.strMod + this.state.savingProf.strength}</li>
                     <li>Dexterity: {this.state.dexMod + this.state.savingProf.dexterity}</li>
@@ -343,8 +335,8 @@ class NewCharacter extends React.Component{
                 </div>
                 <div className="column">
                 <p>Passive Perception:</p>
-                {this.props.skills ? <li className="box" style={{width: 180}}>{10 + this.props.skills.Perception}</li> : null}
-                <div className="box">
+                {this.props.skills ? <li className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{10 + this.props.skills.Perception}</li> : null}
+                <div className="box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Other Proficiencies:</p>
                     <ul>
                         <li>armor: {this.props.newCharClass.prof_armor}</li>
@@ -352,52 +344,42 @@ class NewCharacter extends React.Component{
                         <li>tools: {this.props.newCharClass.prof_tools}</li>
                     </ul>
                 </div>
-                <div className="box">
+                <div className="box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Languages:</p>
                     <p>{this.props.newCharRace.languages.split('_**').pop()}</p>
                 </div>
-                <div className="box">
+                <div className="box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} >
                     <p>Equipment:</p>
                     <p>{this.props.newCharClass.equipment}</p>
                 </div>
-                <div className="box">
+                <div className="box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Armor Choice:</p>
                     {armorBtns}
                 </div>
                 </div>
-                <div className="column">
-                    <div className="box" style={{width: 180}}>
+                <div className="column is-2">
+                    <div className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                         <p>Armor Class: {this.state.armorClass}</p>
                     </div>
-                    <div className="box" style={{width: 180}}>
+                    <div className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                         <p>Initiative: {this.props.mods.dexMod}</p>
                         <p>Speed: {this.props.newCharRace.speed.walk}</p>
                     </div>
-                    <div className="box" style={{width: 180}}>
+                    <div className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                         <p>Hit Dice: {this.props.newCharClass.hit_dice}</p>
                         <p>Max HP: {maxHP}</p>
                     </div>
-                    <div className="box" style={{width: 180}}>
+                    <div className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                         <form onSubmit={this.handleSubmit}>
-                            <label>Name:</label>
-                            <input type='text' placeholder="name" value={this.state.characterName} onChange={this.nameChange}/>
-                            <label>Alignment:</label>
-                            <select onChange={this.alignmentChoice}>
-                                <option value="True Neutral">True Neutral</option>
-                                <option value="Chaotic Neutral">Chaotic Neutral</option>
-                                <option value="Lawful Neutral">Lawful Neutral</option>
-                                <option value="True Evil">True Evil</option>
-                                <option value="True Good">True Good</option>
-                                <option value="Lawful Good">Lawful Good</option>
-                                <option value="Lawful Evil">Lawful Evil</option>
-                                <option value="Chaotic Good">Chaotic Good</option>
-                                <option value="Chaotic Evil">Chaotic Evil</option>
-                            </select>
-                            <button type="submit">Submit Character</button>
+                            <button type="submit">Submit Character</button><br></br>
+                            <h2>Chosen Race: {this.props.newCharRace.name}</h2><br></br>
+                            <img src={raceImg} className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/><br></br>
+                            <h2>Chosen Class: {this.props.newCharClass.name}</h2>
+                            <img src={clasImg} className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                         </form>
                     </div>
                 </div>
-            </div>
+            </div></div>
         )
     }
 }
@@ -409,7 +391,8 @@ const mapStateToProps = (store) => {
       newCharRace: store.newCharRace,
       stats: store.stats,
       mods: store.mods,
-      skills: store.skills
+      skills: store.skills,
+      character_id: store.character_id
     }
 }
   
@@ -444,7 +427,7 @@ const mapDispatchToProps = (dispatch) => {
       },
       AddSkills: (skills) => {
           dispatch({ type: 'ADD_SKILLS', skills})
-      }
+      },
     }
 }
 

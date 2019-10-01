@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :requests
+  resources :messages
+  resources :party_members
+  resources :dungeon_masters
+  resources :games
   resources :characters
   resources :users
   resources :character_classes

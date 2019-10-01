@@ -20,7 +20,7 @@ const store = createStoreWithMiddleware(rootReducer, load(), window.__REDUX_DEVT
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter >
-            <App />
+            <App/>
         </BrowserRouter>
     </Provider>, document.getElementById("root"));
 

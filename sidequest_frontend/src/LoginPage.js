@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class LoginPage extends Component {
   state = {
@@ -25,7 +26,7 @@ class LoginPage extends Component {
     .then(data => {
       if (data.token) {
         localStorage.token = data.token
-        
+        this.props.LogIn(data)
         this.props.history.push('/profile')
 
       }
@@ -35,12 +36,13 @@ class LoginPage extends Component {
   render() {
       console.log(this.props)
     return (
-      <div>
-        <h1>Log in please!</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.handleChange} value={this.state.username} type="text" name="username"/>
-          <input onChange={this.handleChange} value={this.state.password} type="password" name="password"/>
-          <input type="submit" value="Log in"/>
+      <div className="container">
+        <form onSubmit={this.handleSubmit} className="box " style={{width: 900, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10, backgroundImage: `url(http://fanaru.com/fantasy-art/image/232259-fantasy-art-a-burning-rose.gif)`, backgroundSize: 'cover', marginTop: 200, marginLeft: 200}}>
+          <h1 className="title" style={{color: 'white', textAlign: 'center'}}>Log in please!</h1>
+          <input className="input is-medium is-rounded" style={{marginTop: 50, marginBottom: 50}} onChange={this.handleChange} value={this.state.username} type="text" name="username"/>
+          <input className="input is-medium is-rounded" style={{marginTop: 50, marginBottom: 50}} onChange={this.handleChange} value={this.state.password} type="password" name="password"/>
+          <input className="button is-white" type="submit" value="Log in"/>
+          <Link className="button is-white" to={{pathname:'./signup'}} style={{marginLeft: 5}}>SignUp</Link>
         </form>
       </div>
     );

@@ -35,12 +35,12 @@ class StatDist extends React.Component {
     render(){
         return(
             <div>
-                {this.state.strength === false ? <button onClick={this.handleClick}  value="strength">Strength</button> : null }
-                {this.state.dexterity === false ? <button value='dexterity'  onClick={this.handleClick}>Dexterity</button> : null }
-                {this.state.constitution=== false ? <button value='constitution' onClick={this.handleClick} >Constitution</button> : null }
-                {this.state.intelligence === false ? <button value="intelligence" onClick={this.handleClick}>Intelligence</button> : null }
-                {this.state.wisdom === false ? <button value='wisdom'  onClick={this.handleClick}>Wisdom</button> : null }
-                {this.state.charisma === false ? <button value='charisma' onClick={this.handleClick}>Charisma</button> : null }
+                {this.state.strength === false ? <button className="button is-primary is-inverted is-outlined" onClick={this.handleClick}  value="strength">Strength</button> : null }
+                {this.state.dexterity === false ? <button className="button is-primary is-inverted is-outlined" value='dexterity'  onClick={this.handleClick}>Dexterity</button> : null }
+                {this.state.constitution=== false ? <button className="button is-primary is-inverted is-outlined" value='constitution' onClick={this.handleClick} >Constitution</button> : null }
+                {this.state.intelligence === false ? <button className="button is-primary is-inverted is-outlined" value="intelligence" onClick={this.handleClick}>Intelligence</button> : null }
+                {this.state.wisdom === false ? <button className="button is-primary is-inverted is-outlined" value='wisdom'  onClick={this.handleClick}>Wisdom</button> : null }
+                {this.state.charisma === false ? <button className="button is-primary is-inverted is-outlined" value='charisma' onClick={this.handleClick}>Charisma</button> : null }
                 {/* <button onClick={this.resetStats}>reset</button> */}
             </div>
         )

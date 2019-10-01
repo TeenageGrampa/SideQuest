@@ -5,7 +5,7 @@ class CreateCharacterRaces < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :desc
       t.string :age
-      t.string :aignment
+      t.string :alignment
       t.string :size
       t.integer :speed
       t.string :speed_desc

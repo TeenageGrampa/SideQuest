@@ -41,6 +41,12 @@ function rootReducer( state = {}, action){
             return {...state, mods: action.mods}
         case "ADD_SKILLS":
             return{...state, skills: action.skills }
+        case "ADD_CHARACTER_ID":
+            return {...state, character_id: action.character_id}
+        case "CHARACTER_SELECT":
+            return {...state, selectedCharacter: action.character}
+        case "AddRequests":
+            return {...state, requests: action.requests}
 
         default: 
         return state

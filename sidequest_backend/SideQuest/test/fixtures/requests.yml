@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game_id: one
+  dungeon_master_id: one
+  message: MyString
+  character_id: one
+
+two:
+  game_id: two
+  dungeon_master_id: two
+  message: MyString
+  character_id: two

@@ -8,9 +8,14 @@ import FourOhFourPage from './FourOhFourPage';
 import NewClass from './NewClass'
 import NewRace from './NewRace'
 import StatRoll from './StatRoll'
-import CharacterSheet from'./CharacterSheet'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route} from 'react-router-dom'
 import NewCharacter from './NewCharacter';
+import AllCharacters from'./AllCharacters';
+import AllGames from'./AllGames';
+import NewGame from './NewGame';
+import Campaign from './Campaign';
+import CharacterSheet from './CharacterSheet';
+import Inbox from './Inbox'
 
 class App extends React.Component{
 
@@ -41,10 +46,16 @@ class App extends React.Component{
           render={routerProps => <ProfilePage {...routerProps} />} />
         <Route path={'/login'} component={LoginPage} />
         <Route path={'/signup'} component={SignUpPage} />
+        <Route path={'/inbox'} component={Inbox}/>
         <Route path={'/NewClass'} component={NewClass}/>
         <Route path={'/NewRace'} component={NewRace}/>
+        <Route path={'/NewGame'} component={NewGame}/>
         <Route path={'/StatRoll'} component={StatRoll}/>
         <Route path={'/NewCharacter'} component={NewCharacter}/>
+        <Route path={'/AllCharacters'} component={AllCharacters}/>
+        <Route path={'/AllGames'} component={AllGames}/>
+        <Route path={'/Campaign'} component={Campaign} />
+        <Route path={'/CharacterSheet'} component={CharacterSheet}/>
         <Route path={'/'} component={HomePage} />
         <Route component={FourOhFourPage} />
       </Switch>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
+import { Link } from 'react-router-dom'
 
 class SignUpPage extends Component {
     state = {
-      id: 0,
       username: '',
       password: ''
     }
@@ -22,7 +21,7 @@ class SignUpPage extends Component {
           if (data.token) {
             localStorage.token = data.token
     
-            this.props.history.push('/profile')
+            this.props.history.push('/NewClass')
     
           }
         })
@@ -34,22 +33,17 @@ class SignUpPage extends Component {
         })
     }
 
-    componentDidMount(){
-      const id = uuid();
-      this.setState({
-        id: id
-      })
-    }
 
 
   render() {
     return (
-      <div>
-        <h1>Signup please!</h1>
-        <form>
-          <input type="text" name="username" onChange={this.handleChange} value={this.state.username}/>
-          <input type="password" name="password" onChange={this.handleChange} value={this.state.password}/>
-          <input type="submit" value="Signup" onClick={this.handleSubmit}/>
+      <div className="container">
+        <form onSubmit={this.handleSubmit} className="box " style={{width: 900, backgroundImage: `url(http://fanaru.com/fantasy-art/image/232259-fantasy-art-a-burning-rose.gif)`, backgroundSize: 'cover',borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10, marginTop: 200, marginLeft: 200}}>
+          <h1 className="title" style={{color: 'white', textAlign: 'center'}}>Sign Up please!</h1>
+          <input className="input is-medium is-rounded" style={{marginTop: 50, marginBottom: 50}} onChange={this.handleChange} value={this.state.username} type="text" name="username"/>
+          <input className="input is-medium is-rounded" style={{marginTop: 50, marginBottom: 50}} onChange={this.handleChange} value={this.state.password} type="password" name="password"/>
+          <input className="button is-white" type="submit" onClick={this.handleSubmit} value="Sign Up"/>
+          <Link className="button is-white" to={{pathname:'./login'}} style={{marginLeft: 5}}>LogIn</Link>
         </form>
       </div>
     );

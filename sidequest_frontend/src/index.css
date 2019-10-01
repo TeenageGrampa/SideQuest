@@ -11,3 +11,54 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* #logo{
+  background: url('http://fanaru.com/fantasy-art/image/232259-fantasy-art-a-burning-rose.gif');
+  background-size: 'auto'
+} */
+
+.navHead:visited {
+  color: #FFF;
+}
+.navHead:hover {
+   color: #FFF
+}
+.navLink{
+  color: #FFF;
+}
+
+.navHome:visited {
+  color: 'black';
+}
+.navHome:hover {
+   color: 'black'
+}
+
+.badge1 {
+  position:relative;
+}
+.badge1[data-badge]:after {
+  content:attr(data-badge);
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  font-size:.7em;
+  background: red;
+  color:black;
+  width:18px;height:18px;
+  text-align:center;
+  line-height:18px;
+  border-radius:50%;
+  box-shadow:0 0 1px #333;
+}
+
+.brick-bg{
+  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/69/65/black-brick-wallpaper-vector-13576965.jpg');
+  
+}
+ 
+
+div.brick-bg > * {
+  color: white;
+}
+
