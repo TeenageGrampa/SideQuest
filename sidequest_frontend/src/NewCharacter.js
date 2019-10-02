@@ -299,26 +299,26 @@ class NewCharacter extends React.Component{
                         </div>
                     </div>
                 </section>
-            <div className="columns" style={{paddingTop: 50}}>
-                <div className="column content" >
+            <div className="columns" style={{paddingTop: 50, backgroundImage: `url(https://media1.giphy.com/media/3o6UB9xT8upEDGrcqs/giphy.gif)`, backgroundSize: 'cover', margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
+                <div className="column is-2 content" >
                 
                 <ul>
-                <h2>Stats:</h2>
-                <p>Strength - {this.props.stats.strength}</p><br></br>
+                <h2 style={{color: 'white'}}>Stats:</h2>
+                <p style={{color: 'white'}}>Strength - {this.props.stats.strength}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.strMod}</p><br></br>
-                <p>Dexterity - {this.props.stats.dexterity}</p><br></br>
+                <p style={{color: 'white'}}>Dexterity - {this.props.stats.dexterity}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.dexMod}</p><br></br>
-                <p>Constitution - {this.props.stats.constitution}</p><br></br>
+                <p style={{color: 'white'}}>Constitution - {this.props.stats.constitution}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.conMod}</p><br></br>
-                <p>Intelligence - {this.props.stats.intelligence}</p><br></br>
+                <p style={{color: 'white'}}>Intelligence - {this.props.stats.intelligence}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.intMod}</p><br></br>
-                <p>Wisdom - {this.props.stats.wisdom}</p><br></br>
+                <p style={{color: 'white'}}>Wisdom - {this.props.stats.wisdom}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.wisMod}</p><br></br>
-                <p>Charisma - {this.props.stats.charisma}</p><br></br>
+                <p style={{color: 'white'}}>Charisma - {this.props.stats.charisma}</p><br></br>
                 <p className="box" style={{width: 60, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{this.state.chrMod}</p><br></br>
                 </ul> </div>
-                <div className="column">
-                <p>Proficiency Modifier:</p>
+                <div className="column is-2">
+                <p style={{color: 'white'}}>Proficiency Modifier:</p>
                 <li className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>+ 2</li>
                 <ul className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Saving Throws:</p>
@@ -329,12 +329,13 @@ class NewCharacter extends React.Component{
                     <li>Wisdom: {this.state.wisMod + this.state.savingProf.wisdom}</li>
                     <li>Charisma: {this.state.chrMod + this.state.savingProf.charisma}</li>
                 </ul>
-                <h3>Skills:</h3>
-                <h4>Points Left: {this.state.proficiencyPoints}</h4>
+                <h3 style={{color: 'white'}}>Skills:</h3>
+                <h4 style={{color: 'white'}}>Points Left: {this.state.proficiencyPoints}</h4>
                 <Skills handleNext={this.handleNext} handleChoice={this.handleChoice} proficiencyPoints={this.state.proficiencyPoints} handleReset={this.handleReset}/>
                 </div>
-                <div className="column">
-                <p>Passive Perception:</p>
+                <div className="column is-3"></div>
+                <div className="column is-3">
+                <p style={{color: 'white'}}>Passive Perception:</p>
                 {this.props.skills ? <li className="box" style={{width: 180, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{10 + this.props.skills.Perception}</li> : null}
                 <div className="box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <p>Other Proficiencies:</p>

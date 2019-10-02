@@ -13,7 +13,8 @@ class AllGames extends React.Component{
     state = {
         AllGames: [],
         myCharacters: [],
-        filteredGames: []
+        filteredGames: [],
+        onlyAvailable: false
     }
 
     showModal = (e) => {
@@ -53,6 +54,23 @@ class AllGames extends React.Component{
     
         this.setState({
           filteredGames: filteredGames
+        })
+    }
+
+    onlyOpen = () =>{
+       const availableGames = this.state.filteredGames.filter(function(game){
+           return game.party.length < 6
+       })
+       this.setState({
+           onlyAvailable: true,
+           filteredGames: availableGames
+       })
+    }
+
+    showAll = () => {
+        this.setState({
+            filteredGames: this.state.AllGames,
+            onlyAvailable: false
         })
     }
 
@@ -192,6 +210,10 @@ class AllGames extends React.Component{
                 <div className="columns">
                 <div className="column is-9">
                 <h1 className="title">All Games:</h1><br></br>
+                {this.state.onlyAvailable === true ?
+                <button className="button is-black" onClick={this.showAll} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Show All Games</button>
+                :
+                <button className="button is-black" onClick={this.onlyOpen} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Only show games with free slots</button>}
                 </div>
                 <div className="column is-3">
                 <p>Search by Location:</p>

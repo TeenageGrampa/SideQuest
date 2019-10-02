@@ -68,8 +68,8 @@ class RaceInfo extends React.Component{
                 <div className="box" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 440, borderRadius: 30}}>
                 <img src={raceImg}  style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
                 </div>
-                <button style={{color: 'black'}} onClick={this.handleClick}>Choose Race</button>
-                {this.props.charRace.subraces[0] ? <button style={{color: 'black'}} onClick={this.handleSubrace}>Show Subrace</button> : null}
+                <button className="button is-black" onClick={this.handleClick}>Choose Race</button>
+                {this.props.charRace.subraces[0] ? <button className="button is-black" onClick={this.handleSubrace}>Show Subrace</button> : null}
                 <div className="box" style={{color: 'black'}}>
                 <p>{this.state.showSubRace === true ? this.props.charRace.subraces[0].desc : raceDesc}</p>
                 <p>Age: {raceAge}</p>
