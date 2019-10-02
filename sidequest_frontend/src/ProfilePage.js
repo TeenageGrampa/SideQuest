@@ -19,7 +19,7 @@ class ProfilePage extends Component {
     this.props.history.push('/')
   }
 
-  componentWillMount(){
+  componentDidMount(){
     fetch('http://localhost:3000/profile',{
     headers: {
       'Authorization': `Bearer ${localStorage.token}`
@@ -30,20 +30,18 @@ class ProfilePage extends Component {
       {this.props.LogIn(user)
 
         fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-        .then(r => r.json()).then(user => this.props.SelectCharacter(user.characters[0]))}
+        .then(r => r.json()).then(user => this.props.SelectCharacter(user.characters[0], this.getGames(user.games), this.setState({
+          DMGames: user.dungeon_master_games
+        }, () => this.getRequests(user.dungeon_master_games))))}
     )
     localStorage.removeItem('newCharClass')
     localStorage.removeItem('newCharRace')
     localStorage.removeItem('stats')
     localStorage.removeItem('mods')
     localStorage.removeItem('skills')
-    this.checkCharacters()
-    fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-        .then(r => r.json()).then(user => this.getGames(user.games))
-        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-        .then(r => r.json()).then(user => this.setState({
-          DMGames: user.dungeon_master_games
-        }, () => this.getRequests(user.dungeon_master_games)))
+    if(this.props.currentUser){
+      this.checkCharacters()
+      }
   }
 
   getGames = (games) => {
@@ -79,8 +77,8 @@ class ProfilePage extends Component {
     .then(user => this.setState({
         AllCharacters: user.characters
     }, () => {
-        for(let i = 0; i < this.state.AllCharacters.length; i++){
-            if(this.state.AllCharacters[i].race.length > 0 && this.state.AllCharacters[i].class.length > 0){
+        if(this.state.AllCharacters){for(let i = 0; i < this.state.AllCharacters.length; i++){
+            if(this.state.AllCharacters[i].race.length > 0 && this.state.AllCharacters[i].class.length > 0 && this.state.AllCharacters[i].stats.length > 0 && this.state.AllCharacters[i].skills.length > 0 && this.state.AllCharacters[i].mods.length > 0 ){
                 console.log('checked')
             } else {
                 fetch(`http://localhost:3000/characters/${this.state.AllCharacters[i].id}`, {
@@ -88,6 +86,7 @@ class ProfilePage extends Component {
                 }).then(r => r.json()).then(console.log('deleted'))
             }
         }
+      }
     }))
   }
 makeGames= (games) => {
@@ -95,7 +94,7 @@ makeGames= (games) => {
     <div ><div key={game.id} className="columns card brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
         <div className="column is-2" >
             <h1 className="subtitle" style={{color: 'white'}}>Campaign Name:</h1>
-            <p className="title box"  style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{game.name}</p>
+            <p className="subtitle box"  style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{game.name}</p>
             <div className="columns">
             <h3 className="subtitle content is-small" style={{color: 'white'}}>Created by:</h3><br></br>
             <div className="column box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
@@ -172,7 +171,7 @@ makeGames= (games) => {
     return (
       <div className="container" >
         <NavBar />
-        <button onClick={this.handleClick} className="button is-black" style={{marginLeft: 100, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} >Logout</button>
+        {this.props.currentUser ? <div><button onClick={this.handleClick} className="button is-black" style={{marginLeft: 100, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} >Logout</button>
         {this.state.requests.length === 0 ? <Link to={{pathname:"/Inbox"}} >
           <button className="button is-black " style={{marginLeft: 3, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Requests</button>
         </Link> 
@@ -189,7 +188,7 @@ makeGames= (games) => {
         <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Character Adventures:</h2>
         {AllGames}
         <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Dungeon Master Adventures:</h2>
-        {DMGames}
+        {DMGames}</div> : <div><h1 className="title">Getting Your Info</h1></div>}
       </div>
     );
   }

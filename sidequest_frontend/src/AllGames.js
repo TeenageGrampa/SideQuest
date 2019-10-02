@@ -5,6 +5,7 @@ import CharacterSelect from './CharacterSelect'
 import Modal from './Modal';
 import PartyMember from './PartyMember'
 import { Link, Route} from 'react-router-dom'
+import { geolocated } from 'react-geolocated'
 
 
 
@@ -40,7 +41,7 @@ class AllGames extends React.Component{
         fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
         .then(r => r.json()).then(user => this.setState({
             myCharacters: user.characters
-        }))
+        }, () => this.onlyOpen()))
     }
 
     handleSearch = (e) => {
@@ -99,13 +100,40 @@ class AllGames extends React.Component{
             )
     }
 
-    componentDidUpdate(){
-        fetch(`http://localhost:3000/games`)
-        .then(r => r.json()).then(games => this.setState({
-            AllGames: games
-        }))
-    }
     
+    useLocation = () =>{
+        !this.props.isGeolocationAvailable ? 
+        console.log('Your browser does not support Geolocation')
+        : !this.props.isGeolocationEnabled ? 
+        console.log('Geolocation is not enabled')
+        : this.props.coords ?
+        this.setState({
+            latitude: this.props.coords.latitude,
+            longitude: this.props.coords.longitude
+        }, () => {
+            const closestGames = this.state.filteredGames.sort((a, b) => (this.PythagorasEquirectangular(this.state.latitude, this.state.longitude, a.latitude, a.longitude) > (this.PythagorasEquirectangular(this.state.latitude, this.state.longitude, b.latitude, b.longitude)) ? 1 : -1))
+            this.setState({
+                filterGames: closestGames
+            })
+            })
+        : console.log('getting location')
+    }
+
+    degToRad = (deg) =>{
+        return deg * Math.PI / 180
+    }
+
+    PythagorasEquirectangular = (latitude1, longitude1, latitude2, longitude2) => {
+        let lat1 = this.degToRad(latitude1);
+        let lat2 = this.degToRad(latitude2);
+        let lon1 = this.degToRad(longitude1);
+        let lon2 = this.degToRad(longitude2);
+        let R = 6371; // km
+        let x = (lon2 - lon1) * Math.cos((lat1 + lat2) / 2);
+        let y = (lat2 - lat1);
+        let d = Math.sqrt(x * x + y * y) * R;
+        return d;
+    }
 
 
 
@@ -115,7 +143,7 @@ class AllGames extends React.Component{
             <div><div key={game.id} className="card columns brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                 <div className="column is-2" >
                     <h1 className="subtitle" style={{color: 'white'}}>Campaign Name:</h1>
-                    <p className="title box" style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}} >{game.name}</p>
+                    <p className="subtitle box" style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}} >{game.name}</p>
                     <div className="columns">
                     <h3 className="subtitle column content is-small" style={{color: 'white'}}>Created by:</h3>
                     <div className="column box">
@@ -209,7 +237,8 @@ class AllGames extends React.Component{
                 </div>
                 <div className="columns">
                 <div className="column is-9">
-                <h1 className="title">All Games:</h1><br></br>
+                {this.state.onlyAvailable === true ? <div><h1 className="title">All Available Games:</h1><br></br></div> : <div><h1 className="title">All Games:</h1><br></br></div> }
+                {this.state.latitude && this.state.longitude ? <div><h1 className="subtitle">Showing Closest Games to Your Location</h1><br></br></div> : null }
                 {this.state.onlyAvailable === true ?
                 <button className="button is-black" onClick={this.showAll} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Show All Games</button>
                 :
@@ -218,6 +247,7 @@ class AllGames extends React.Component{
                 <div className="column is-3">
                 <p>Search by Location:</p>
                 <input type="text" value={this.state.search} placeholder="search" onChange={this.handleSearch}/><br></br>
+                <button className="button is-black" onClick={this.useLocation} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10, marginTop: 10}}>Use Current Location</button>
                 </div>
                 </div>
 
@@ -247,4 +277,9 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllGames);
+export default geolocated({
+    positionOptions: {
+        enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+})(connect(mapStateToProps, mapDispatchToProps)(AllGames));

@@ -26,8 +26,21 @@ class LoginPage extends Component {
     .then(data => {
       if (data.token) {
         localStorage.token = data.token
-        this.props.LogIn(data)
-        this.props.history.push('/profile')
+        fetch('http://localhost:3000/profile',{
+        headers: {
+          'Authorization': `Bearer ${localStorage.token}`
+        }
+        })
+        .then(res => res.json())
+        .then(user => 
+        this.props.LogIn(user),
+        this.setState({
+
+        }, () => {
+          this.props.history.push('/profile')
+        })
+        )
+
 
       }
     })
