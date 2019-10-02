@@ -23,6 +23,8 @@ class SignUpPage extends Component {
     
             this.props.history.push('/NewClass')
     
+          } else {
+            alert('Username Taken or Password invalid. Password must contain: at least one uppercase Letter, one lowercase letter, one number, and be 8 characters long')
           }
         })
     }

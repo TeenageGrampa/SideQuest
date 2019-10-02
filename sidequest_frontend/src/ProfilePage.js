@@ -141,18 +141,18 @@ makeGames= (games) => {
                 </div>
                 <div className="column is-4">
                 {game.party.length > 2 &&  game.players.length > 2 ? <div style={{margin: 5}}>
-                    <PartyMember character={game.party[2]} player={game.players[0]}/>
+                    <PartyMember character={game.party[2]} player={game.players[2]}/>
                 </div> : null}
                 {game.party.length > 3 &&  game.players.length > 3 ? <div style={{margin: 5}}>
-                    <PartyMember character={game.party[3]} player={game.players[0]}/>
+                    <PartyMember character={game.party[3]} player={game.players[3]}/>
                 </div> : null }
                 </div>
                 <div className="column is-4">
                 {game.party.length > 4 &&  game.players.length > 4 ? <div style={{margin: 5}}>
-                    <PartyMember character={game.party[4]} player={game.players[0]}/>
+                    <PartyMember character={game.party[4]} player={game.players[4]}/>
                 </div> : null}
                 {game.party.length > 5 &&  game.players.length > 5 ? <div style={{margin: 5}}>
-                    <PartyMember character={game.party[5]} player={game.players[0]}/>
+                    <PartyMember character={game.party[5]} player={game.players[5]}/>
                 </div> : null }
                 </div>
             </div>

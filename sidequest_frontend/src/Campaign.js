@@ -151,7 +151,7 @@ class Campaign extends React.Component{
                         <h2>Messages:</h2>
                         <ul className="box">
                             {this.state.messages[0] ? 
-                            messages : null}
+                            messages : <h1 className="title">no messages yet</h1>}
                         </ul>
                     </div>
                 </div>

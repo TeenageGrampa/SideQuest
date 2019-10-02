@@ -40,7 +40,8 @@ class NewClass extends React.Component{
     }
 
     handleNext = () => {
-        fetch('http://localhost:3000/characters', {
+        if(this.state.characterName){
+            fetch('http://localhost:3000/characters', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',
@@ -74,6 +75,9 @@ class NewClass extends React.Component{
                     spellcast_ability: this.props.newCharClass.spellcasting_ability
                 })
             }).then(r => r.json()).then(this.props.AddCharID(this.state.character_id)).then(this.props.history.push('/NewRace'))}))
+        } else {
+            alert('Your Character Needs a Name!')
+        }
     }
 
     nameChange = (e) =>{

@@ -60,6 +60,7 @@ class NewCharacter extends React.Component{
             return
         }
     }
+
     handleReset = () => {
         if(this.props.newCharClass.name === 'Barbarian'){
             this.setState({
@@ -161,7 +162,7 @@ class NewCharacter extends React.Component{
 
     handleSubmit =(e) =>  {
         e.preventDefault()
-        console.log();
+        if(this.props.skills && this.state.armorClass > 0){
         const hitDieNum = this.props.newCharClass.hit_dice.split('d')[1]
         const maxHP = parseInt(hitDieNum) + this.props.mods.conMod
                 fetch('http://localhost:3000/character_skills', {
@@ -212,6 +213,9 @@ class NewCharacter extends React.Component{
                     proficiency_mod: 2
                 })
             }).then(r => r.json()).then(this.handleCreate)
+            } else {
+            alert('You must pick skill proficiencies and armor class')
+            }
         }
             
     
@@ -256,15 +260,23 @@ class NewCharacter extends React.Component{
     getRaceImg = (charRace) => {
         if(charRace === 'Dwarf'){
             return require('./dwarf-king.png')
+        } else if(charRace === 'Hill Dwarf'){
+            return require('./dwarf-king.png')
         } else if(charRace === 'Elf'){
             return require('./woman-elf-face.png')
+        }else if(charRace === 'High Elf'){
+            return require('./woman-elf-face.png')
         } else if(charRace === 'Halfling'){
+            return require('./hobbit-dwelling.png')
+        } else if(charRace === 'Lightfoot'){
             return require('./hobbit-dwelling.png')
         } else if(charRace === 'Human'){
             return require('./sensuousness.png')
         } else if(charRace === 'Dragonborn'){
             return require('./spiked-dragon-head.png')
         } else if(charRace === 'Gnome'){
+            return require('./bad-gnome.png')
+        } else if(charRace === 'Rock Gnome'){
             return require('./bad-gnome.png')
         } else if(charRace === 'Half-Elf'){
             return require('./elf-ear.png')

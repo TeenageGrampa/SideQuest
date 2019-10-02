@@ -201,15 +201,23 @@ class NewCharacter extends React.Component{
     getRaceImg = (charRace) => {
         if(charRace === 'Dwarf'){
             return require('./dwarf-king.png')
+        } else if(charRace === 'Hill Dwarf'){
+            return require('./dwarf-king.png')
         } else if(charRace === 'Elf'){
             return require('./woman-elf-face.png')
+        }else if(charRace === 'High Elf'){
+            return require('./woman-elf-face.png')
         } else if(charRace === 'Halfling'){
+            return require('./hobbit-dwelling.png')
+        } else if(charRace === 'Lightfoot'){
             return require('./hobbit-dwelling.png')
         } else if(charRace === 'Human'){
             return require('./sensuousness.png')
         } else if(charRace === 'Dragonborn'){
             return require('./spiked-dragon-head.png')
         } else if(charRace === 'Gnome'){
+            return require('./bad-gnome.png')
+        } else if(charRace === 'Rock Gnome'){
             return require('./bad-gnome.png')
         } else if(charRace === 'Half-Elf'){
             return require('./elf-ear.png')

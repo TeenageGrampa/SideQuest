@@ -42,6 +42,8 @@ class LoginPage extends Component {
         )
 
 
+      } else {
+        alert('Username or Password are incorrect')
       }
     })
   }
