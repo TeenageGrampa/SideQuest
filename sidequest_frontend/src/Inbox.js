@@ -14,7 +14,7 @@ class Inbox extends React.Component{
     }
 
     handleDelete = (request) => {
-        const filteredRequests = this.props.requests.filter( function(ele){
+        const filteredRequests = this.props.requests.filter( ele => {
             if(ele !== request){
                 return ele
             }

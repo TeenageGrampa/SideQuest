@@ -35,14 +35,14 @@ class ClassInfo extends React.Component{
     }
     
     render(){
-        const arcLi = this.props.charClass.archetypes.map(archetype => <li>{archetype.name} - {archetype.desc}</li>)
+        const arcLi = this.props.charClass.archetypes.map(archetype => <li key={archetype.name}>{archetype.name} - {archetype.desc}</li>)
         const classDesc = this.props.charClass.desc.split('###')
         const clasImg = this.getImg(this.props.charClass.name)
         return(
             <div className="container box brick-bg" style={{boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}}>
                 <h2 className='title' style={{textAlign: 'center'}}>{this.props.charClass.name}</h2>
                 <div className="box" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 440, borderRadius: 30}}>
-                <img src={clasImg} style={{width:400}} style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
+                <img src={clasImg} alt="" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
                 </div>
                 <button onClick={this.handleClick} className="button is-black">Choose Class</button>
                 <div className="box" style={{color: 'black'}}>

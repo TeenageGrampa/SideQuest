@@ -5,7 +5,7 @@ class User < ApplicationRecord
     has_many :messages
     has_many :dungeon_masters
 
-    # PASSWORD_REQUIREMENTS = /\A
+    # PASSWORD_FORMAT = /\A
     # (?=.{8,})
     # (?=.*\d)
     # (?=.*\[a-z])
@@ -13,5 +13,5 @@ class User < ApplicationRecord
     # /x
 
     validates :username, uniqueness: true
-    # validates :password, format: PASSWORD_REQUIREMENTS
+    validates :password, presence: true
 end

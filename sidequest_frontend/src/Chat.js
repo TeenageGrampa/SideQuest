@@ -36,14 +36,13 @@ class NewGame extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         return(
             <div>
                 <form>
-                    <div className="box" style={{width: 600}}>
+                    <div className="box brick-bg" style={{width: 600, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <h1>New Message:</h1><br></br>
-                        <textarea id="message_area" cols="80" value={this.state.content} onChange={this.handleChange} style={{height: 200}}></textarea><br></br>
-                        <button onClick={this.handleSubmit}>Submit</button>
+                        <textarea id="message_area" cols="80" value={this.state.content} onChange={this.handleChange} style={{height: 200, color: 'black'}}></textarea><br></br>
+                        <button onClick={this.handleSubmit} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="button is-black" >Submit</button>
                     </div>
                 </form>
                 

@@ -48,7 +48,6 @@ class Skills extends React.Component{
 
 
     handleClick = (e) => {
-        console.log(e.target.value)
         if(this.props.proficiencyPoints > 0){
             this.setState({
                 skills: {

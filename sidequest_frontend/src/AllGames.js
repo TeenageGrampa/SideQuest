@@ -4,8 +4,9 @@ import NavBar from './NavBar'
 import CharacterSelect from './CharacterSelect'
 import Modal from './Modal';
 import PartyMember from './PartyMember'
-import { Link, Route} from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { geolocated } from 'react-geolocated'
+import Geocode from "react-geocode"
 
 
 
@@ -111,6 +112,18 @@ class AllGames extends React.Component{
             latitude: this.props.coords.latitude,
             longitude: this.props.coords.longitude
         }, () => {
+            Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+            Geocode.fromLatLng(this.state.latitude, this.state.longitude).then(
+                response => {
+                  const address = response.results[0].formatted_address;
+                  this.setState({
+                      address: address
+                  });
+                },
+                error => {
+                  console.error(error);
+                }
+              )
             const closestGames = this.state.filteredGames.sort((a, b) => (this.PythagorasEquirectangular(this.state.latitude, this.state.longitude, a.latitude, a.longitude) > (this.PythagorasEquirectangular(this.state.latitude, this.state.longitude, b.latitude, b.longitude)) ? 1 : -1))
             this.setState({
                 filterGames: closestGames
@@ -135,19 +148,31 @@ class AllGames extends React.Component{
         return d;
     }
 
+    getAddress = (latitude, longitude) => {
+        Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+            Geocode.fromLatLng(latitude, longitude).then(
+                response => {
+                  const address = response.results[0].formatted_address;
+                  return address
+                },
+                error => {
+                  console.error(error);
+                }
+              )
+    }
+
 
 
     render(){
-        console.log(this.state)
         const AllGames = this.state.filteredGames.map(game => 
-            <div><div key={game.id} className="card columns brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
+            <div key={game.id}><div key={game.id} className="card columns brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                 <div className="column is-2" >
                     <h1 className="subtitle" style={{color: 'white'}}>Campaign Name:</h1>
                     <p className="subtitle box" style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}} >{game.name}</p>
                     <div className="columns">
                     <h3 className="subtitle column content is-small" style={{color: 'white'}}>Created by:</h3>
                     <div className="column box">
-                        <img src={require('./boss-key.png')} style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                        <img src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                         <p style={{textAlign: 'center', color: 'black', borderRadius: 10}}>{game.dungeon_master.name}</p>
                     </div>
                     </div>
@@ -237,12 +262,12 @@ class AllGames extends React.Component{
                 </div>
                 <div className="columns">
                 <div className="column is-9">
-                {this.state.onlyAvailable === true ? <div><h1 className="title">All Available Games:</h1><br></br></div> : <div><h1 className="title">All Games:</h1><br></br></div> }
-                {this.state.latitude && this.state.longitude ? <div><h1 className="subtitle">Showing Closest Games to Your Location</h1><br></br></div> : null }
+                {this.state.onlyAvailable === true ? <div><h1 className="title">All Available Campaigns:</h1><br></br></div> : <div><h1 className="title">All Campaigns:</h1><br></br></div> }
+                {this.state.latitude && this.state.longitude ? <div><h1 className="subtitle">Showing Closest Campaigns to {this.state.address}</h1><br></br></div> : null }
                 {this.state.onlyAvailable === true ?
-                <button className="button is-black" onClick={this.showAll} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Show All Games</button>
+                <button className="button is-black" onClick={this.showAll} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Show All Campaigns</button>
                 :
-                <button className="button is-black" onClick={this.onlyOpen} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Only show games with free slots</button>}
+                <button className="button is-black" onClick={this.onlyOpen} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Only show Campaigns with free slots</button>}
                 </div>
                 <div className="column is-3">
                 <p>Search by Location:</p>

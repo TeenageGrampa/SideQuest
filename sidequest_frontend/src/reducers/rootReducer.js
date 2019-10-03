@@ -1,21 +1,6 @@
-import { combineReducers } from 'redux';
 
-// const rootReducer = combineReducers({
-//     currentUser,
-//     newChar
-// })
 
 export default rootReducer;
-
-// function currentUser( state = {}, action){
-//     switch(action.type) {
-//         case "LOGIN_CURRENT_USER":
-//             return {...state, currentUser: action.user}
-
-//         default:
-//             return state
-//     }
-// }
 
 function rootReducer( state = {}, action){
     switch(action.type){

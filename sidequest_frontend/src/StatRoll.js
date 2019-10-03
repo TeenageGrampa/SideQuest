@@ -279,13 +279,13 @@ class NewCharacter extends React.Component{
                 <div className="column" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto'}}>
                     <h2>Chosen Race: </h2>
                     {this.props.newCharRace.name}
-                    <img src={raceImg} style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="image is-96x96" />
+                    <img src={raceImg} alt="" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="image is-96x96" />
                     
                 </div>
                 <div className="column">
                 <h2>Chosen Class: </h2>
                 {this.props.newCharClass.name}
-                <img src={clasImg} className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                <img src={clasImg} alt="" className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                 </div>
                 <div className="column">
                 <h2>Ability score increases: {asi}</h2>

@@ -22,7 +22,7 @@ class CharacterSelect extends React.Component{
     render(){
         const charBtns = this.props.characters.map((character, index) => <option  key={character.id} value={index}>{character.name} - Class: {character.class[0].name} - Race: {character.race[0].name} - Alignment: {character.alignment}</option>)
         return(
-            <div  style={{ width: 600 }}clasName="control">
+            <div  style={{ width: 600 }} className="control">
                 <form >
                     <label className="title" style={{color: 'white'}}>Select Current Character</label><br></br>
                     <select  style={{marginTop: 50}} onChange={this.handleChange}>

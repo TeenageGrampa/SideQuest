@@ -39,7 +39,7 @@ class PartyMember extends React.Component{
             <div className="columns box is-7by1" style={{margin: 2, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} >
                 <div className="column is-4 ">
                     <div >
-                        <img src={clasImg} style={{zIndex: 500, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="image is-96x96" />
+                        <img alt="" src={clasImg} style={{zIndex: 500, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="image is-96x96" />
                         <Link to={{pathname:"/CharacterSheet", state: { character: this.props.character }}} >
                         <button style={{marginTop: 3, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} className="button is-black is-small">Character Sheet</button>
                         </Link> 

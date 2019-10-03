@@ -36,9 +36,8 @@ class AllCaracters extends React.Component{
 
 
     render(){
-        console.log(this.state)
         const characters = this.state.characters.map(character  =>
-        <div className="column is-4"><PartyMember character={character} player={this.props.currentUser}/></div>)
+        <div key={character.id} className="column is-4"><PartyMember character={character} player={this.props.currentUser}/></div>)
         return(
             <div className="container">
                 <NavBar />

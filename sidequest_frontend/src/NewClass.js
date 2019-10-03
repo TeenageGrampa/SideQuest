@@ -99,7 +99,6 @@ class NewClass extends React.Component{
 
 
     render(){
-        console.log(this.props)
         const classComps = this.state.allClasses.map(charClass => <ClassInfo key={charClass.id} saveClass={this.saveClass} charClass={charClass} /> )
         return(
             <div className="container">

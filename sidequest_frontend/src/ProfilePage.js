@@ -91,14 +91,14 @@ class ProfilePage extends Component {
   }
 makeGames= (games) => {
   const AllGames = games.map(game => 
-    <div ><div key={game.id} className="columns card brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
+    <div key={game.id}><div key={game.id} className="columns card brick-bg" style={{margin: 20, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
         <div className="column is-2" >
             <h1 className="subtitle" style={{color: 'white'}}>Campaign Name:</h1>
             <p className="subtitle box"  style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>{game.name}</p>
             <div className="columns">
             <h3 className="subtitle content is-small" style={{color: 'white'}}>Created by:</h3><br></br>
             <div className="column box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
-                <img src={require('./boss-key.png')} style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                <img src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                 <p style={{textAlign: 'center'}}>{game.dungeon_master.username}</p>
             </div>
             </div>
@@ -165,7 +165,6 @@ makeGames= (games) => {
   
 
   render() {
-    console.log(this.state)
     const AllGames = this.makeGames(this.state.AllGames)
     const DMGames = this.makeGames(this.state.DMGames)
     return (
@@ -185,9 +184,9 @@ makeGames= (games) => {
           <h1>getting your info...</h1>
           
         }
-        <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Character Adventures:</h2>
+        <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Character Campaigns:</h2>
         {AllGames}
-        <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Dungeon Master Adventures:</h2>
+        <h2 className="title" style={{textAlign: 'center', margin: 50}}>All Your Current Dungeon Master Campaigns:</h2>
         {DMGames}</div> : <div><h1 className="title">Getting Your Info</h1></div>}
       </div>
     );

@@ -18,7 +18,7 @@ class AllCaracters extends React.Component{
         },
     }
 
-    componentWillMount(){
+    componentDidMount(){
         const savingProf = this.props.location.state.character.class[0].prof_saving_throws.toLowerCase().split(', ')
         this.setState({
             savingProf: {
@@ -87,19 +87,8 @@ class AllCaracters extends React.Component{
         } 
     }
 
-    // componentDidMount(){
-    //     fetch(`http://localhost:3000/characters/${this.props.location.state.character.id}`)
-    //     .then(r => r.json())
-    //     .then(character => this.setState({
-    //         character: character
-    //     }))
-        
-    // }
-
 
     render(){
-        console.log(this.state)
-        console.log(this.props.location.state)
         const clasImg = this.getClassImg(this.props.location.state.character.class[0].name)
         const raceImg = this.getRaceImg(this.props.location.state.character.race[0].name)
         return(
@@ -118,14 +107,14 @@ class AllCaracters extends React.Component{
                             <h1 className="subtitle">
                                 Class:
                             </h1>
-                            <img src={clasImg} className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
+                            <img src={clasImg} alt="" className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
                             <p>{this.props.location.state.character.class[0].name}</p>
                         </div>
                         <div className="column  is-4">
                             <h1 className="subtitle">
                                 Race:
                             </h1>
-                            <img src={raceImg} className="image is-96x96" style={{ borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
+                            <img src={raceImg} alt="" className="image is-96x96" style={{ borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
                             <p>{this.props.location.state.character.race[0].name}</p>
                         </div>
                     </div>

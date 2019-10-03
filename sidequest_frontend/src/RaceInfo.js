@@ -54,9 +54,8 @@ class RaceInfo extends React.Component{
     }
     
     render(){
-        console.log(this.props)
         const raceImg = this.getImg(this.props.charRace.name)
-        const asiLi = this.props.charRace.asi.map(asi => <li>{asi.attributes[0]} - {asi.value}</li>)        
+        const asiLi = this.props.charRace.asi.map(asi => <li >{asi.attributes[0]} - {asi.value}</li>)        
         const raceDesc = this.props.charRace.desc.split('Traits').pop()
         const raceAge = this.props.charRace.age.split('_**').pop()
         const raceTraits = this.props.charRace.traits.split('**_').join(' ').split('_**')
@@ -66,7 +65,7 @@ class RaceInfo extends React.Component{
             <div className="container box brick-bg" style={{boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}}>
                 {this.state.showSubRace === true ? <h2 className='title' style={{textAlign: 'center'}}>{this.props.charRace.subraces[0].name}</h2> : <h2 className='title' style={{textAlign: 'center'}}>{this.props.charRace.name}</h2>}
                 <div className="box" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 440, borderRadius: 30}}>
-                <img src={raceImg}  style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
+                <img src={raceImg} alt="" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
                 </div>
                 <button className="button is-black" onClick={this.handleClick}>Choose Race</button>
                 {this.props.charRace.subraces[0] ? <button className="button is-black" onClick={this.handleSubrace}>Show Subrace</button> : null}

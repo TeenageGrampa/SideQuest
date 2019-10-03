@@ -34,7 +34,6 @@ class NewCharacter extends React.Component{
 
     saveRace = (charRace) => {
         this.props.AddRace(charRace)
-        console.log(this.props)
     }
 
     handleNext = () => {
@@ -68,8 +67,6 @@ class NewCharacter extends React.Component{
 
 
     render(){
-        // console.log(this.props)
-        // console.log(this.state)
         const raceComps = this.state.allRaces.map(charRace => <RaceInfo key={charRace.id} saveRace={this.saveRace} charRace={charRace} /> )
         return(
             <div className="container"> 
