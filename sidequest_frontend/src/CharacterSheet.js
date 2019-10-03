@@ -107,14 +107,14 @@ class AllCaracters extends React.Component{
                             <h1 className="subtitle">
                                 Class:
                             </h1>
-                            <img src={clasImg} alt="" className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
+                            <img src={clasImg} alt="" className="image is-96x96 floating" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
                             <p>{this.props.location.state.character.class[0].name}</p>
                         </div>
                         <div className="column  is-4">
                             <h1 className="subtitle">
                                 Race:
                             </h1>
-                            <img src={raceImg} alt="" className="image is-96x96" style={{ borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
+                            <img src={raceImg} alt="" className="image is-96x96 floating" style={{ borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}} />
                             <p>{this.props.location.state.character.race[0].name}</p>
                         </div>
                     </div>

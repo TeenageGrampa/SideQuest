@@ -35,7 +35,7 @@ class PartyMember extends React.Component{
         const clasImg = this.getImg(this.props.character.class[0].name)
         return(
             <div className="columns"><div className="column" style={{width:350, }}>
-                <img src={clasImg} alt="" style={{width:150, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                <img src={clasImg} alt="" className="floating" style={{width:150, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
             </div>
             <div className="column" >
                 <h2>Player: {this.props.player.username}</h2>

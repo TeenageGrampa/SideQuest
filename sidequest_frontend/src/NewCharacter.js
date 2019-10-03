@@ -386,9 +386,9 @@ class NewCharacter extends React.Component{
                         <form onSubmit={this.handleSubmit}>
                             <button type="submit">Submit Character</button><br></br>
                             <h2>Chosen Race: {this.props.newCharRace.name}</h2><br></br>
-                            <img src={raceImg} alt="" className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/><br></br>
+                            <img src={raceImg} alt="" className="image floating is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/><br></br>
                             <h2>Chosen Class: {this.props.newCharClass.name}</h2>
-                            <img src={clasImg} alt="" className="image is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                            <img src={clasImg} alt="" className="image floating is-96x96" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                         </form>
                     </div>
                 </div>

@@ -172,7 +172,7 @@ class AllGames extends React.Component{
                     <div className="columns">
                     <h3 className="subtitle column content is-small" style={{color: 'white'}}>Created by:</h3>
                     <div className="column box">
-                        <img src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                        <img className="floating" src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                         <p style={{textAlign: 'center', color: 'black', borderRadius: 10}}>{game.dungeon_master.name}</p>
                     </div>
                     </div>
@@ -198,7 +198,7 @@ class AllGames extends React.Component{
                     <div className="column is-4">
                     {game.party_ids.includes(this.props.currentUser.id) || game.dungeon_master.user_id === this.props.currentUser.id ? 
                  <Link to={{pathname:"/Campaign", state: { game: game }}} >
-                    <button className="button is-black">Go To Campaign</button>
+                    <button className="button is-black" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Go To Campaign</button>
                     </Link> : null}
                     <h2>Free Spots: {6 - game.party.length}</h2>
                     <h2>Party Members:</h2><br></br>

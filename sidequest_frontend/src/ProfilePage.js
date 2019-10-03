@@ -98,7 +98,7 @@ makeGames= (games) => {
             <div className="columns">
             <h3 className="subtitle content is-small" style={{color: 'white'}}>Created by:</h3><br></br>
             <div className="column box" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
-                <img src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                <img className ="floating" src={require('./boss-key.png')} alt="" style={{width:40, display: 'block', marginLeft: 'auto', marginRight: 'auto', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                 <p style={{textAlign: 'center'}}>{game.dungeon_master.username}</p>
             </div>
             </div>
@@ -118,7 +118,7 @@ makeGames= (games) => {
         <div className="column is-9">
         {game.party || game.dungeon_master.user_id === this.props.currentUser.id ? 
          <Link to={{pathname:"/Campaign", state: { game: game }}} >
-            <button className="button is-black">Go To Campaign</button>
+            <button className="button is-black" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Go To Campaign</button>
             </Link> : null}
             <div className="columns">
             <div className="column is-2">
@@ -176,7 +176,7 @@ makeGames= (games) => {
         </Link> 
         :
         <Link to={{pathname:"/Inbox"}} >
-          <button className="button is-black badge1" data-badge={this.state.requests.length} style={{marginLeft: 3, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Requests</button>
+          <button className="button is-black badge1 " data-badge={this.state.requests.length} style={{marginLeft: 3, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>Requests</button>
         </Link>}
         {
           this.props.currentUser.username ?

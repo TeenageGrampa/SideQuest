@@ -64,9 +64,7 @@ class RaceInfo extends React.Component{
         return(
             <div className="container box brick-bg" style={{boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)'}}>
                 {this.state.showSubRace === true ? <h2 className='title' style={{textAlign: 'center'}}>{this.props.charRace.subraces[0].name}</h2> : <h2 className='title' style={{textAlign: 'center'}}>{this.props.charRace.name}</h2>}
-                <div className="box" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 440, borderRadius: 30}}>
-                <img src={raceImg} alt="" style={{display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
-                </div>
+                <img src={raceImg} alt="" className="floating" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 30, display: 'block', marginLeft: 'auto', marginRight: 'auto', width: 400}} />
                 <button className="button is-black" onClick={this.handleClick}>Choose Race</button>
                 {this.props.charRace.subraces[0] ? <button className="button is-black" onClick={this.handleSubrace}>Show Subrace</button> : null}
                 <div className="box" style={{color: 'black'}}>

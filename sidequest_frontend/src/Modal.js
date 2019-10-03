@@ -45,7 +45,7 @@ class Modal extends React.Component{
         return(
             <div className="modal-background" style={{zIndex: 600, }}>
                 <div className="modal-card">
-                    <div className="modal-card-body" style={{marginTop: '25%', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
+                    <div className="modal-card-body floating" style={{marginTop: '25%', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                     <h2 className="modal-title" style={{textAlign: 'center', color: 'black'}}>Request to Join: </h2><br></br>
                     <p className="title" style={{textAlign: 'center', color: 'black'}}>{this.props.game.name}</p> 
                         <form >

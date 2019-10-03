@@ -109,10 +109,10 @@ class Campaign extends React.Component{
                         </div>
                         <div className="column">
                         <h2>Dungeon Master: {this.props.location.state.game.dungeon_master.name}</h2>
-                        <img src={require('./boss-key.png')} alt="" style={{width: 100, marginLeft: 30, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
+                        <img className="floating" src={require('./boss-key.png')} alt="" style={{width: 100, marginLeft: 30, borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}/>
                         {this.state.gameAddress ? <p>Near: {this.state.gameAddress}</p> : null}
                         </div>
-                        <div className="column box is-half" style={{borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
+                        <div className="column box is-half" style={{color: 'black', borderStyle: 'ridge', boxShadow: '10px 10px 18px -5px rgba(0,0,0,0.75)', borderRadius: 10}}>
                             <div className="columns">
                             <div className="column">
                             <h2 className="subtitle">Location: </h2>
@@ -122,7 +122,7 @@ class Campaign extends React.Component{
                             <h2 className="subtitle">Description: </h2>
                             <p>{this.props.location.state.game.desc}</p>
                             </div>
-                            <div className="column is-one-quarter">
+                            <div className="column is-one-quarter" style={{color: 'black'}}>
                             <h2 className="subtitle">Role Playing Intensity: </h2>
                             <p>{this.props.location.state.game.rplevel}</p>
                             <h2 className="subtitle">Experience Level: </h2>
